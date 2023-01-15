@@ -10,6 +10,16 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
+class QuestionCreateForm(FlaskForm):
+    question = StringField('Question', validators=[DataRequired()])
+    a = StringField("A", validators=[DataRequired()])
+    b = StringField("B", validators=[DataRequired()])
+    c = StringField("C", validators=[DataRequired()])
+    d = StringField("D", validators=[DataRequired()])
+    answer = StringField('Answer', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=(DataRequired(), Email()))

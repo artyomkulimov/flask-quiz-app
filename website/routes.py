@@ -4,7 +4,7 @@ from flask import render_template, request, redirect, url_for, session, g, flash
 
 from flask_login import login_user, current_user, logout_user
 from werkzeug.urls import url_parse
-from website.forms import LoginForm, RegistrationForm, QuestionForm
+from website.forms import LoginForm, RegistrationForm, QuestionForm, QuestionCreateForm
 from website.models import User, Questions
 
 
@@ -93,6 +93,19 @@ def score():
     huser = User.query.filter_by(marks=hs).first()
     # db.session.commit()
     return render_template("score.html", hs=huser, title="Final Score")
+
+# @app.route("/change_questions", methods=["GET", "POST"])
+# def change_questions():
+#     form = QuestionCreateForm()
+#     if form.validate_on_submit():
+#         Question = Questions(
+#             ques=form.question.data, a=form.a.data, b=form.b.data, c=form.c.data, d=form.d.data, answer=form.answer.data
+#         )
+
+
+#         db.session.add(Question)
+#         db.session.commit()
+#     return render_template("createq.html", form=form)
 
 
 @app.route("/logout")
