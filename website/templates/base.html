@@ -1,0 +1,49 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{ title }}</title>
+		{% else %}
+		<title>Default</title>
+		{% endif %}
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/21d2eca3df.js"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/styles.css') }}"
+		/>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/mob-styles.css') }}"
+		/>
+	</head>
+	<body class="home-bg">
+		<nav>
+			<ul class="nav-links">
+				<li><a href="{{ url_for('home') }}"> Home </a></li>
+				{% if not g.user %}
+				<li><a href="{{ url_for('login') }}"> Login </a></li>
+				{% else %}
+				<li><a href="{{ url_for('logout') }}"> Logout </a></li>
+				{% endif %}
+			</ul>
+		</nav>
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %} {% endwith %} {% block content %}{% endblock %}
+	</body>
+</html>
+
+
+
